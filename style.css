@@ -9,6 +9,7 @@ html {
 }
 code {
     font-family: 'Share Tech Mono', monospace;
+    white-space: pre;
     color: gainsboro;
 }
 /* if screen is larger than 1000px then add padding to the page */
@@ -30,6 +31,11 @@ code {
 
 a {
     color: #ffb454;
+}
+
+hr {
+    color: white;
+    margin-top: 2em;
 }
 
 .logo {
@@ -91,7 +97,7 @@ a {
 }
 
 .variable {
-    color: #4dd0e1;
+    color: #f29668;
 }
 
 .string {

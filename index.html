@@ -11,7 +11,7 @@
     </div>
     <div class="body">
         <div class="left">
-        <pre><code id="example">
+        <code id="example">
 ' a lua-like functional programming language
 
 ' factorial function
@@ -82,10 +82,10 @@ and let expr :: regex("a*b") in
     print(expr.match("ab")) ; ' true
     print(expr.match("c")) ; ' false
         </code>
-        </pre>
-            <script>
+            <script> // this is one big ugly fuckin hack
                 const example = document.getElementById("example");
                 example.innerHTML = example.innerHTML
+                    .replaceAll(/&lt;/g, '<')
                     .replaceAll(/\b([a-zA-Z_][a-zA-Z0-9_]*)\b(?!(\(|>))/g, '<span class="variable">$&</span>')
                     .replaceAll(/\("(.*)"\)/g, '(<span class="string">"$1"</span>)')
                     .replaceAll(/'(.*)/g, '<span class="comment">$&</span>')
@@ -122,11 +122,14 @@ and let expr :: regex("a*b") in
             </ul>
             <h2>stdlib</h2>
             <p>the standard library is currently somewhat small, but it does have a few useful functions.</p>
+            <h3>io</h3>
             <ul>
-                <h3>io</h3>
                 <li><code>print(arg)</code> - prints <code>arg</code> to stdout.</li>
                 <li><code>read()</code> - reads a line from stdin.</li>
-                <h3>operators</h3>
+            </ul>
+            <hr>
+            <h3>operators</h3>
+            <ul>
                 <li><code>add(a, b)</code> - adds <code>a</code> and <code>b</code>. is the default add operator.</li>
                 <li><code>sub(a, b)</code> - subtracts <code>b</code> from <code>a</code>. is the default subtract operator.</li>
                 <li><code>mul(a, b)</code> - multiplies <code>a</code> and <code>b</code>. is the default multiply operator.</li>
@@ -142,12 +145,18 @@ and let expr :: regex("a*b") in
                 <li><code>or(a, b)</code> - returns <code>true</code> if <code>a</code> or <code>b</code> are <code>true</code>. this is the default or operator.</li>
                 <li><code>not(a)</code> - returns <code>true</code> if <code>a</code> is <code>false</code>. this is the default not operator.</li>
                 <li><code>compose(a, b)</code> - returns a function that is the composition of <code>a</code> and <code>b</code>. this is the default compose operator.</li>
-                <h3>misc</h3>
+            </ul>
+            <hr>
+            <h3>misc</h3>
+            <ul>
                 <li><code>toNum(a)</code> - converts <code>a</code> to a number.</li>
                 <li><code>toStr(a)</code> - converts <code>a</code> to a string.</li>
                 <li><code>toBool(a)</code> - converts <code>a</code> to a boolean.</li>
                 <li><code>global(s)</code> - returns the global variable <code>s</code>.</li>
+            </ul>
+                <hr>
                 <h3>lists</h3>
+            <ul>
                 <li><code>range(start, end)</code> - returns a list of numbers from <code>start</code> to <code>end</code>.</li>
                 <li><code>nth(n, l)</code> - returns the <code>n</code>th element of <code>l</code>.</li>
                 <li><code>head(l)</code> - returns the first element of <code>l</code>.</li>
@@ -168,7 +177,10 @@ and let expr :: regex("a*b") in
                 <li><code>concat(a, b)</code> - returns the concatenation of <code>a</code> and <code>b</code>. supports strings too. this is the default concatenation operator.</li>
                 <li><code>reverse(l)</code> - returns the reverse of <code>l</code>.</li>
                 <li><code>sort(l)</code> - returns the sorted version of <code>l</code>.</li>
+                </ul>
+                <hr>
                 <h3>strings & regex</h3>
+            <ul>
                 <li><code>regex(a)</code> - returns a regex object from <code>a</code>.</li>
                 <li><code>match(r, s)</code> - returns <code>true</code> if <code>r</code> matches <code>s</code>.</li>
                 <li><code>replace(r, s, t)</code> - returns <code>s</code> with anything that <code>r</code> matches replaced with <code>t</code>.</li>
