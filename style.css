@@ -33,6 +33,10 @@ a {
     color: #ffb454;
 }
 
+ul {
+    list-style-type: "> ";
+}
+
 hr {
     color: white;
     margin-top: 2em;
