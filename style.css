@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight&family=Share+Tech+Mono&display=swap');
 html {
-    font-family: sans-serif;
+    font-family: 'Inter Tight', sans-serif;
     font-size: 16px;
     line-height: 1.5;
     background: black;
@@ -7,7 +8,8 @@ html {
     padding: 0 10px;
 }
 code {
-    font-family: monospace;
+    font-family: 'Share Tech Mono', monospace;
+    color: gainsboro;
 }
 /* if screen is larger than 1000px then add padding to the page */
 @media (min-width: 1000px) {
@@ -27,7 +29,7 @@ code {
 }
 
 a {
-    color: white;
+    color: #ffb454;
 }
 
 .logo {
@@ -43,4 +45,71 @@ a {
 
 .right {
     padding-left: 20px;
+}
+
+.comment {
+    font-style: italic;
+    color: #acb6bf8c;
+}
+
+.comment .keyword {
+    font-style: italic;
+    font-weight: normal;
+    color: #acb6bf8c;
+}
+
+.comment .function {
+    font-style: italic;
+    color: #acb6bf8c;
+}
+
+.comment .number {
+    font-style: italic;
+    color: #acb6bf8c;
+}
+
+.comment .variable {
+    font-style: italic;
+    color: #acb6bf8c;
+}
+
+.keyword {
+    font-weight: bolder;
+    color: #ff8f40;
+}
+
+.function {
+    color: #ffb454;
+}
+
+.variable .function {
+    color: #ffb454;
+}
+
+.number {
+    color: #e6b450;
+}
+
+.variable {
+    color: #4dd0e1;
+}
+
+.string {
+    color: #c3e88d;
+}
+
+.string .variable {
+    color: #c3e88d;
+}
+
+.string .function {
+    color: #c3e88d;
+}
+
+.string .number {
+    color: #c3e88d;
+}
+
+.string .keyword {
+    color: #c3e88d;
 }

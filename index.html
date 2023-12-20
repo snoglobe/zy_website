@@ -11,7 +11,7 @@
     </div>
     <div class="body">
         <div class="left">
-        <pre><code>
+        <pre><code id="example">
 ' a lua-like functional programming language
 
 ' factorial function
@@ -57,7 +57,7 @@ and fn counter(i) ::
     fn () ::
         i :: i + 1 in i
     end ' end keyword prevents the parser from
-        ' attaching the next "and" to the inner function,
+        ' attaching the next 'and' to the inner function,
         ' could also just use parentheses
 
 ' test of closures
@@ -83,6 +83,19 @@ and let expr :: regex("a*b") in
     print(expr.match("c")) ; ' false
         </code>
         </pre>
+            <script>
+                const example = document.getElementById("example");
+                example.innerHTML = example.innerHTML
+                    .replaceAll(/\b([a-zA-Z_][a-zA-Z0-9_]*)\b(?!(\(|>))/g, '<span class="variable">$&</span>')
+                    .replaceAll(/\("(.*)"\)/g, '(<span class="string">"$1"</span>)')
+                    .replaceAll(/'(.*)/g, '<span class="comment">$&</span>')
+                    // prevent replacement within comments
+                    .replaceAll(/\b(fn|let|and|in|end)\b/g, '<span class="keyword">$&</span>')
+                    .replaceAll(/\b(if|then|else)\b/g, '<span class="keyword">$&</span>')
+                    .replaceAll(/\b(true|false)\b/g, '<span class="keyword">$&</span>')
+                    .replaceAll(/\b([a-zA-Z_][a-zA-Z0-9_]*)\b\(/g, '<span class="function">$1</span>(')
+                    .replaceAll(/\b([0-9]+)\b/g, '<span class="number">$&</span>')
+            </script>
         </div>
         <div class="right">
             <p>zy is a functional programming language with a syntax inspired by lua and ocaml.</p>
@@ -162,6 +175,14 @@ and let expr :: regex("a*b") in
                 <li><code>split(r, s)</code> - returns a list of strings from <code>s</code> split by <code>r</code>.</li>
                 <li><code>join(s, l)</code> - returns a string from <code>l</code> joined by <code>s</code>.</li>
             </ul>
+            <script>
+                const codeBlocks = document.querySelectorAll('li code');
+                for (let i = 0; i < codeBlocks.length; i++) {
+                    codeBlocks[i].innerHTML = codeBlocks[i].innerHTML
+                        .replaceAll(/\b([a-zA-Z_][a-zA-Z0-9_]*)\b(?!(\(|>))/g, '<span class="variable">$&</span>')
+                        .replaceAll(/\b([a-zA-Z_][a-zA-Z0-9_]*)\b\(/g, '<span class="function">$1</span>(')
+                }
+            </script>
         </div>
     </div>
 </body>
