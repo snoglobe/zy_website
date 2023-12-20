@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zy programming language</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top">
+        <img src="zy.svg" class="logo" alt="zy programming language">
+    </div>
+    <div class="body">
+        <div class="left">
+        <pre><code>
+' a lua-like functional programming language
+
+' factorial function
+fn fact(n) ::
+    if n = 0 then
+       1
+    else
+       n * fact(n-1)
+' read a number from the console
+and let a :: read() in
+    a . toNum . fact . print
+
+' an iterative factorial function
+and fn fact2(n) ::
+    range(1, n+1)
+    . foldl(1, mul)
+' read a number from the console
+and let a :: read() in
+    a . toNum . fact2 . print ' composition of functions
+
+' obligatory fibonacci function
+and fn fib(n) ::
+    if n < 2 then
+        n
+    else
+        fib(n-1) + fib(n-2)
+and let a :: read() in
+    a . toNum . fib . print
+
+' test of currying
+and fn test(a, b, c) ::
+    print(a + b + c)
+and let _ :: () in
+    test(1)(2)(3) ' 6
+
+' test of assignment
+and let c :: 0 in
+    c :: 3 in
+    print(c) ' 3
+
+' test of closures
+and fn counter(i) ::
+    fn () ::
+        i :: i + 1 in i
+    end ' end keyword prevents the parser from
+        ' attaching the next "and" to the inner function,
+        ' could also just use parentheses
+
+' test of closures
+and let c :: counter(0) in
+    print(c()) ; ' 1
+    print(c()) ; ' 2
+    print(c())   ' 3
+
+' test of lists
+and let l :: [1, 2, 3] in
+    print(l) ; ' [1, 2, 3]
+    print(l . head) ; ' 1
+    print(l . tail) ; ' [2, 3]
+    print(l .. [4, 5, 6]) ; ' [1, 2, 3, 4, 5, 6]
+    print(l.nth(1)) ' 2
+    ' and a whole other bunch of list functions
+
+' test of regex
+and let expr :: regex("a*b") in
+    print(expr.match("aaab")) ; ' true
+    print(expr.match("b")) ; ' true
+    print(expr.match("ab")) ; ' true
+    print(expr.match("c")) ; ' false
+        </code>
+        </pre>
+        </div>
+        <div class="right">
+            <p>zy is a functional programming language with a syntax inspired by lua and ocaml.</p>
+            <p>it is currently in development and has a (slow) reference interpreter written in kotlin.</p>
+            <p>the source code is available on <a href="https://github.com/snoglobe/zy">github</a>.</p>
+            <p>all contributions are welcome.</p>
+            <h2>synopsis</h2>
+            <p>zy is:</p>
+            <ul>
+                <li>functional</li>
+                <li>dynamic</li>
+                <li>strongly typed</li>
+                <li>small</li>
+                <li>and more</li>
+            </ul>
+            <p>zy has:</p>
+            <ul>
+                <li>first-class functions</li>
+                <li>currying</li>
+                <li>and more</li>
+            </ul>
+            <h2>stdlib</h2>
+            <p>the standard library is currently somewhat small, but it does have a few useful functions.</p>
+            <ul>
+                <h3>io</h3>
+                <li><code>print(arg)</code> - prints <code>arg</code> to stdout.</li>
+                <li><code>read()</code> - reads a line from stdin.</li>
+                <h3>operators</h3>
+                <li><code>add(a, b)</code> - adds <code>a</code> and <code>b</code>. is the default add operator.</li>
+                <li><code>sub(a, b)</code> - subtracts <code>b</code> from <code>a</code>. is the default subtract operator.</li>
+                <li><code>mul(a, b)</code> - multiplies <code>a</code> and <code>b</code>. is the default multiply operator.</li>
+                <li><code>div(a, b)</code> - divides <code>a</code> by <code>b</code>. is the default divide operator.</li>
+                <li><code>mod(a, b)</code> - returns the remainder of <code>a</code> divided by <code>b</code>. this is the default modulo operator.</li>
+                <li><code>eq(a, b)</code> - returns <code>true</code> if <code>a</code> is equal to <code>b</code>. this is the default equality operator.</li>
+                <li><code>neq(a, b)</code> - returns <code>true</code> if <code>a</code> is not equal to <code>b</code>. this is the default inequality operator.</li>
+                <li><code>lt(a, b)</code> - returns <code>true</code> if <code>a</code> is less than <code>b</code>. this is the default less than operator.</li>
+                <li><code>gt(a, b)</code> - returns <code>true</code> if <code>a</code> is greater than <code>b</code>. this is the default greater than operator.</li>
+                <li><code>lte(a, b)</code> - returns <code>true</code> if <code>a</code> is less than or equal to <code>b</code>. this is the default less than or equal to operator.</li>
+                <li><code>gte(a, b)</code> - returns <code>true</code> if <code>a</code> is greater than or equal to <code>b</code>. this is the default greater than or equal to operator.</li>
+                <li><code>and(a, b)</code> - returns <code>true</code> if <code>a</code> and <code>b</code> are both <code>true</code>. this is the default and operator.</li>
+                <li><code>or(a, b)</code> - returns <code>true</code> if <code>a</code> or <code>b</code> are <code>true</code>. this is the default or operator.</li>
+                <li><code>not(a)</code> - returns <code>true</code> if <code>a</code> is <code>false</code>. this is the default not operator.</li>
+                <li><code>compose(a, b)</code> - returns a function that is the composition of <code>a</code> and <code>b</code>. this is the default compose operator.</li>
+                <h3>misc</h3>
+                <li><code>toNum(a)</code> - converts <code>a</code> to a number.</li>
+                <li><code>toStr(a)</code> - converts <code>a</code> to a string.</li>
+                <li><code>toBool(a)</code> - converts <code>a</code> to a boolean.</li>
+                <li><code>global(s)</code> - returns the global variable <code>s</code>.</li>
+                <h3>lists</h3>
+                <li><code>range(start, end)</code> - returns a list of numbers from <code>start</code> to <code>end</code>.</li>
+                <li><code>nth(n, l)</code> - returns the <code>n</code>th element of <code>l</code>.</li>
+                <li><code>head(l)</code> - returns the first element of <code>l</code>.</li>
+                <li><code>tail(l)</code> - returns the last element of <code>l</code>.</li>
+                <li><code>len(l)</code> - returns the length of <code>l</code>.</li>
+                <li><code>map(l, f)</code> - returns a list of the result of applying <code>f</code> to each element of <code>l</code>.</li>
+                <li><code>foldl(a, f, l)</code> - returns the result of applying <code>f</code> to each element of <code>l</code> from left to right, starting with <code>a</code>.</li>
+                <li><code>foldr(a, f, l)</code> - returns the result of applying <code>f</code> to each element of <code>l</code> from right to left, starting with <code>a</code>.</li>
+                <li><code>filter(l, f)</code> - returns a list of the elements of <code>l</code> for which <code>f</code> returns <code>true</code>.</li>
+                <li><code>reduce(f, l)</code> - returns the result of applying <code>f</code> to each element of <code>l</code> from left to right.</li>
+                <li><code>zip(l1, f)</code> - returns a list of pairs of elements from <code>l1</code> and <code>l2</code>.</li>
+                <li><code>zipWith(l1, l2, f)</code> - returns a list of the result of applying <code>f</code> to each pair of elements from <code>l1</code> and <code>l2</code>.</li>
+                <li><code>plus(l1, a)</code> - returns the list <code>l1</code> with <code>a</code> appended to the end.</li>
+                <li><code>minus(l1, a)</code> - returns the list <code>l1</code> with the first instance of <code>a</code> removed.</li>
+                <li><code>drop(l1, n)</code> - returns the list <code>l1</code> with each instance of <code>a</code> removed.</li>
+                <li><code>take(l1, n)</code> - returns the list <code>l1</code> with the first <code>n</code> elements removed.</li>
+                <li><code>slice(l1, n, m)</code> - returns the list <code>l1</code> with the first <code>n</code> elements removed and the first <code>m</code> elements removed.</li>
+                <li><code>concat(a, b)</code> - returns the concatenation of <code>a</code> and <code>b</code>. supports strings too. this is the default concatenation operator.</li>
+                <li><code>reverse(l)</code> - returns the reverse of <code>l</code>.</li>
+                <li><code>sort(l)</code> - returns the sorted version of <code>l</code>.</li>
+                <h3>strings & regex</h3>
+                <li><code>regex(a)</code> - returns a regex object from <code>a</code>.</li>
+                <li><code>match(r, s)</code> - returns <code>true</code> if <code>r</code> matches <code>s</code>.</li>
+                <li><code>replace(r, s, t)</code> - returns <code>s</code> with anything that <code>r</code> matches replaced with <code>t</code>.</li>
+                <li><code>split(r, s)</code> - returns a list of strings from <code>s</code> split by <code>r</code>.</li>
+                <li><code>join(s, l)</code> - returns a string from <code>l</code> joined by <code>s</code>.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

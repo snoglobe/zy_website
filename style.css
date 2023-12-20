@@ -1,0 +1,44 @@
+html {
+    font-family: sans-serif;
+    background: black;
+    color: white;
+    padding: 0 10px;
+}
+code {
+    font-family: monospace;
+}
+/* if screen is larger than 1000px then add padding to the page */
+@media (min-width: 1000px) {
+    html {
+        padding: 25px 250px;
+    }
+}
+.top {
+    display: flex;
+    justify-content: left;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+a {
+    color: white;
+}
+
+.logo {
+    width: auto;
+    height: 100px;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.right {
+    padding-left: 20px;
+}
