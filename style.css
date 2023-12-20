@@ -12,12 +12,62 @@ code {
     white-space: pre;
     color: gainsboro;
 }
-/* if screen is larger than 1000px then add padding to the page */
-@media (min-width: 1000px) {
+
+.body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media (min-width: 1300px) {
     html {
-        padding: 25px 250px;
+        padding: 20px 250px;
+    }
+    .left {
+        display: block !important;
+        width: 50%;
+    }
+    .right {
+        display: block !important;
+        width: 50%;
     }
 }
+
+@media (min-width: 801px) {
+    .left {
+        display: block !important;
+        width: 50%;
+        word-wrap: break-word;
+    }
+
+    .right {
+        display: block !important;
+        padding: 20px;
+    }
+}
+
+#hide {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .body {
+        display: block;
+    }
+    #example {
+        display: none;
+        /* animation when display is changed */
+        transition: all 0.5s ease-in-out;
+    }
+    #hide {
+        display: block;
+        color: silver;
+        text-decoration: silver underline;
+        font-style: italic;
+        font-size: 12px;
+    }
+}
+
 .top {
     display: flex;
     justify-content: left;
@@ -45,16 +95,6 @@ hr {
 .logo {
     width: auto;
     height: 100px;
-}
-
-.body {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.right {
-    padding-left: 20px;
 }
 
 .comment {
