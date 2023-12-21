@@ -97,7 +97,7 @@ a {
 }
 
 ul {
-    list-style-type: "> ";
+    padding-left: 1em;
 }
 
 hr {
