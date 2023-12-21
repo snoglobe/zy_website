@@ -73,11 +73,11 @@ code {
         display: none;
     }
     #hide {
+        font-size: 18px;
         display: block;
         color: silver;
-        text-decoration: silver underline;
+        text-decoration-line: underline;
         font-style: italic;
-        font-size: 12px;
     }
 }
 
